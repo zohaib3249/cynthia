@@ -1,0 +1,30 @@
+
+ .imput-text {
+    /* color: #9fa6ad;
+    color: #9fa6ad;
+    color: #9fa6ad; */
+    background-color: #fff0;
+    border: 2px solid #ced4da;
+    border-radius: 6px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    font-family: Inter, Arial;
+    font-size: 16px;
+    font-weight: 200;
+    line-height: 19px;
+    display: flex;
+  }
+
+
+.error {
+  border-color: red;
+}
+
+.error-icon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: red;
+}

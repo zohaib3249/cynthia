@@ -1,0 +1,31 @@
+.button-large-2 {
+  color: #007bff;
+  text-align: center;
+  background-color: #0000;
+  border: none;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  font-family: Inter, Arial;
+  font-size: 1.286rem;
+  font-weight: 500;
+  line-height: 22px;
+  display: flex;
+}
+
+.rectangle-2-1 {
+  height: 100%;
+  background-color: #007bff00;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  flex-direction: row;
+  flex-basis: 100%;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2px;
+  display: flex;
+}
+
+.new-feature {
+  margin-top: 1px;
+}
