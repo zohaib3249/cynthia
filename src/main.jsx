@@ -1,11 +1,11 @@
 import React from 'react'
-
+import "./assets/css/style.css";
 import ReactDOM from 'react-dom/client'
 // import App from './App'
 // import './index.css'
 import Login from './pages/login';
 import Reset from './pages/reset';
-
+import ConfirmReset from './pages/set_password';
 
 
 import Signup from './pages/signup';
@@ -17,8 +17,13 @@ import Home from './pages/home';
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Home />,
+    path: "/ConfirmReset",
+    element: <ConfirmReset />,
+  },
+  
+  {
+    path: "/reset",
+    element: <Reset />,
   },
   
   {
@@ -29,10 +34,7 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <Signup />,
   },
-  {
-    path: "/reset",
-    element: <Reset />,
-  },
+ 
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

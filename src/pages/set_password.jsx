@@ -1,10 +1,14 @@
 
 import * as React from "react";
-import "../assets/css/confirm_reset.css";
+// import "../assets/css/confirm_reset.css";
 import ImputText from "./components/ImputText";
 import Link from "./components/Link";
 import ButtonLarge from "./components/ButtonLarge";
 import ButtonLarge2 from "./components/ButtonLarge2";
+import AlertMessage from "./components/alert";
+
+
+
 function ConfirmReset() {
     const [password, setPassword] = React.useState('');
     const [confirmpassword, setcomfimrPassword] = React.useState('');
@@ -56,37 +60,58 @@ function ConfirmReset() {
         alert(validate());
       };
     return (
-        <div className="login-page">
-            <span className="cynthia">Cynthia</span>
-            <span className="slogan">
-                Data-driven planning software designed by Product Owners for Product
+        
+        <div className="login-page container  d-flex flex-column  align-items-center">
+        <div className="d-flex flex-column justify-content-center align-items-center">
+            <div className="mb-5"></div>
+
+            <span className="cynthia text-center ">Cynthia</span>
+            <span className="slogan text-center ">
+                Data-driven planning software <br />designed by Product Owners for Product
                 Owners.
+
             </span>
 
-            <div className="box">
-                <span className="title">Password Reset</span>
+        </div>
+        <div className="mb-4"></div>
+        <div className="box  d-flex flex-column align-items-center ">
+
+
+            <div className="mb-5"></div>
+            <span className="title mt-5 text-center">Sign up</span>
+            <AlertMessage />
+
+            <div className="mb-5"></div>
+            <div className="mb-2"></div>
+
+            <div className="d-flex flex-column justify-content-around ">
                 <form onSubmit={handleSubmit}>
-                <ImputText
-                    className="imput-password-instance-1"
-                    {...propsData.imputPassword}
-                />
-                <ImputText
-                    className="imput-password-instance-2"
-                    {...propsData.imputconfirmPassword}
-                />
-                <ButtonLarge
-                    className="button-large-instance-1"
-                    {...propsData.buttonLarge}
-                />
+                
+                    <ImputText
+                        className="input_field form-control"
+                        {...propsData.imputPassword}
+                    />
+                    <div className="mb-2"></div>
+                    <ImputText
+                        className="input_field form-control"
+                        {...propsData.imputconfirmPassword}
+                    />
+                    <div className="mb-4"></div>
+                    <ButtonLarge
+                        className="input_field "
+                        {...propsData.buttonLarge}
+                    />
+
                 </form>
+                <div className="mb-2"></div>
                 <hr className="separator" />
-                
-                
+                <div className="mb-2"></div>
+                <Link className="link-signup-instance-1" {...propsData.linkSignup} />
             </div>
-
-
         </div>
 
+
+    </div>
 
 
     )

@@ -1,6 +1,6 @@
 
 import * as React from "react";
-import "../assets/css/signup.css";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as request from './api';
 import AlertMessage from './components/alert'
@@ -64,63 +64,75 @@ function Signup() {
         if (validate()) {
 
             const userData = {
-                username,
-                password,
+                "email":username,
+                "password":password,
             };
-            var res = await request.login(userData);
+            var res = await request.signup(userData);
+            console.log(res);
             if (res.id) {
-                alert("Account has been created,check your email")
+                sessionStorage.setItem("message","Account has been created,check your email");
+               
             } else {
-                if(res.email)
-                {
-                    alert(res.email[0])
-                }
-                else{
-                    res.password[0]
-                }
+                
+                sessionStorage.setItem("message",res);
+                    
             }
         }
-        else{
+        else {
             alert("all fields are required")
         }
 
 
-        alert(validate());
+      
     };
     return (
-        <div className="login-page container">
-            <span className="cynthia">Cynthia</span>
-            <span className="slogan">
-                Data-driven planning software designed by Product Owners for Product
-                Owners.
+        <div className="login-page container  d-flex flex-column  align-items-center">
+            <div className="d-flex flex-column justify-content-center align-items-center">
+                <div className="mb-5"></div>
 
-            </span>
+                <span className="cynthia text-center ">Cynthia</span>
+                <span className="slogan text-center ">
+                    Data-driven planning software <br />designed by Product Owners for Product
+                    Owners.
 
-            <div className="box">
-                <div className="col-md-8">
-                    <span className="title">Sign up</span>
-                    {/* <AlertMessage variant="success" /> */}
+                </span>
 
-                </div>
+            </div>
+            <div className="mb-4"></div>
+            <div className="box  d-flex flex-column align-items-center ">
 
-                <div className="container">
+
+                <div className="mb-5"></div>
+                <span className="title mt-5 text-center">Sign up</span>
+                <AlertMessage />
+
+                <div className="mb-5"></div>
+                <div className="mb-2"></div>
+
+                <div className="d-flex flex-column justify-content-around ">
                     <form onSubmit={handleSubmit}>
 
-                        <ImputText className="imput-email-instance" {...propsData.imputEmail} />
+                        <ImputText className="input_field form-control " {...propsData.imputEmail} />
+                        <div className="mb-2"></div>
                         <ImputText
-                            className="imput-password-instance-1"
+                            className="input_field form-control"
                             {...propsData.imputPassword}
                         />
+                        <div className="mb-2"></div>
                         <ImputText
-                            className="imput-password-instance-2"
+                            className="input_field form-control"
                             {...propsData.imputconfirmPassword}
                         />
+                        <div className="mb-4"></div>
                         <ButtonLarge
-                            className="button-large-instance-1"
+                            className="input_field "
                             {...propsData.buttonLarge}
                         />
+
                     </form>
+                    <div className="mb-2"></div>
                     <hr className="separator" />
+                    <div className="mb-2"></div>
                     <Link className="link-signup-instance-1" {...propsData.linkSignup} />
                 </div>
             </div>
