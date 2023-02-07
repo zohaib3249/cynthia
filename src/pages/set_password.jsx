@@ -62,19 +62,19 @@ function ConfirmReset() {
     return (
         
         <div className="login-page container  d-flex flex-column  align-items-center">
-        <div className="d-flex flex-column justify-content-center align-items-center">
-            <div className="mb-5"></div>
+            <div className="d-flex flex-column justify-content-center align-items-center">
+                <div className="mb-5"></div>
 
-            <span className="cynthia text-center ">Cynthia</span>
-            <span className="slogan text-center ">
-                Data-driven planning software <br />designed by Product Owners for Product
-                Owners.
+                <span className="cynthia text-center ">Cynthia</span>
+                <span className="slogan text-center ">
+                    Data-driven planning software <br />designed by Product Owners for Product
+                    Owners.
 
-            </span>
+                </span>
 
-        </div>
-        <div className="mb-4"></div>
-        <div className="box  d-flex flex-column align-items-center ">
+            </div>
+            <div className="mb-4"></div>
+            <div className="box  d-flex flex-column justify-content-evenly align-items-center ">
 
 
             <div className="mb-5"></div>

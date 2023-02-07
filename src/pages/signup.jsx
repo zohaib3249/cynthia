@@ -8,11 +8,14 @@ import ImputText from "./components/ImputText";
 import Link from "./components/Link";
 import ButtonLarge from "./components/ButtonLarge";
 import ButtonLarge2 from "./components/ButtonLarge2";
+
+import Alert from 'react-bootstrap/Alert';
 function Signup() {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [confirmpassword, setcomfimrPassword] = React.useState('');
-
+    const [is_submit, set_issubmit] = React.useState(false);
+    
     const [errors, setErrors] = React.useState({
         email: false,
         password: false,
@@ -52,17 +55,26 @@ function Signup() {
 
         const newErrors = {
             email: username === '',
+            
             password: password === '',
             confirmpassword: confirmpassword === ''
-            // ...
+            
         };
+        
         setErrors(newErrors);
         return !Object.values(newErrors).some(Boolean);
     };
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (validate()) {
+                if(password!=confirmpassword)
+                {
+                    sessionStorage.setItem("message","Password dose not matched");
+                    return
+                }
+                else{
 
+                
             const userData = {
                 "email":username,
                 "password":password,
@@ -78,11 +90,14 @@ function Signup() {
                     
             }
         }
-        else {
-            alert("all fields are required")
         }
+        else {
+            sessionStorage.setItem("message","all fields are required");
+            
+        }
+        set_issubmit(true)
 
-
+        location.reload(); 
       
     };
     return (
@@ -99,21 +114,27 @@ function Signup() {
 
             </div>
             <div className="mb-4"></div>
-            <div className="box  d-flex flex-column align-items-center ">
+            <div className="box  d-flex flex-column justify-content-evenly align-items-center ">
 
 
-                <div className="mb-5"></div>
-                <span className="title mt-5 text-center">Sign up</span>
-                <AlertMessage />
-
-                <div className="mb-5"></div>
-                <div className="mb-2"></div>
+                <div className="d-flex flex-column align-items-start">
+                
+                <span className="title  text-center">Sign up</span>
+          
+              
+     
+                </div>
+                
 
                 <div className="d-flex flex-column justify-content-around ">
+                <AlertMessage />
+              
+              
                     <form onSubmit={handleSubmit}>
 
                         <ImputText className="input_field form-control " {...propsData.imputEmail} />
                         <div className="mb-2"></div>
+                        
                         <ImputText
                             className="input_field form-control"
                             {...propsData.imputPassword}
@@ -128,7 +149,8 @@ function Signup() {
                             className="input_field "
                             {...propsData.buttonLarge}
                         />
-
+                        
+                        
                     </form>
                     <div className="mb-2"></div>
                     <hr className="separator" />

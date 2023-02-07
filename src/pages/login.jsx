@@ -86,7 +86,7 @@ function Login() {
 
 
               <div className="mb-5"></div>
-              <span className="title mt-5 text-center">Login</span>
+              <span className="title  text-center">Login</span>
               <AlertMessage />
 
               <div className="mb-5"></div>

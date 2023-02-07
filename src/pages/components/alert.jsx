@@ -13,9 +13,14 @@ function AlertMessage() {
   return (
     <>
       {alertMessage && (
-        <Alert className='row' key='info' variant='info'>
-       {alertMessage}!
+        <div className="">
+            <div className="mb-5"></div>
+            <Alert className='' key='info' variant='info'>
+       {alertMessage}
       </Alert>
+           
+        </div>
+        
        
       )}
         

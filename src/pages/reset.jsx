@@ -64,15 +64,14 @@ function Reset() {
 
         </div>
         <div className="mb-4"></div>
-        <div className="box  d-flex flex-column align-items-center ">
+        <div className="box  d-flex flex-column justify-content-evenly align-items-center ">
 
 
-            <div className="mb-5"></div>
-            <span className="title mt-5 text-center">Password Recovery</span>
+            
+            <span className="title text-center">Password Recovery</span>
             <AlertMessage />
 
-            <div className="mb-5"></div>
-            <div className="mb-2"></div>
+          
 
             <div className="d-flex flex-column justify-content-around ">
                 <form onSubmit={handleSubmit}>
