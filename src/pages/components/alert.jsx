@@ -3,9 +3,10 @@ import * as React from "react";
 function AlertMessage() {
   const [alertMessage, setAlertMessage] = React.useState(null);
   React.useEffect(() => {
-    const message = sessionStorage.getItem("message");
-    console.log(message);
-    if (message) {
+    const messageobj = sessionStorage.getItem("message");
+    var message = ""
+    if (messageobj) {
+      message = JSON.parse(messageobj)
       setAlertMessage(message);
       sessionStorage.removeItem("message");
     }
@@ -14,9 +15,9 @@ function AlertMessage() {
     <>
       {alertMessage && (
         <div className="">
-            <div className="mb-5"></div>
-            <Alert className='' key='info' variant='info'>
-       {alertMessage}
+            
+            <Alert className='' key='info' variant={alertMessage.color}>
+       {alertMessage.message}
       </Alert>
            
         </div>

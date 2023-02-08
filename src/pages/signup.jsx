@@ -15,7 +15,7 @@ function Signup() {
     const [password, setPassword] = React.useState('');
     const [confirmpassword, setcomfimrPassword] = React.useState('');
     const [is_submit, set_issubmit] = React.useState(false);
-    
+
     const [errors, setErrors] = React.useState({
         email: false,
         password: false,
@@ -55,102 +55,106 @@ function Signup() {
 
         const newErrors = {
             email: username === '',
-            
+
             password: password === '',
             confirmpassword: confirmpassword === ''
-            
+
         };
-        
+
         setErrors(newErrors);
         return !Object.values(newErrors).some(Boolean);
     };
     const handleSubmit = async (event) => {
+        var message = ""
         event.preventDefault();
         if (validate()) {
-                if(password!=confirmpassword)
-                {
-                    sessionStorage.setItem("message","Password dose not matched");
-                    return
-                }
-                else{
+            if (password != confirmpassword) {
+                message = { "message": "Password dose not matched", color: "danger" }
 
-                
-            const userData = {
-                "email":username,
-                "password":password,
-            };
-            var res = await request.signup(userData);
-            console.log(res);
-            if (res.id) {
-                sessionStorage.setItem("message","Account has been created,check your email");
-               
-            } else {
-                
-                sessionStorage.setItem("message",res);
-                    
+            }
+            else {
+
+
+                const userData = {
+                    "email": username,
+                    "password": password,
+                };
+                var res = await request.signup(userData);
+                console.log(res);
+                if (res.id) {
+                    message = { "message": "Account has been created,check your email", color: "success" }
+
+
+                } else {
+                    message = { "message": res, color: "danger" }
+
+
+                }
             }
         }
-        }
         else {
-            sessionStorage.setItem("message","all fields are required");
-            
+            message = { "message": "ll fields are required", color: "danger" }
+
+
+
         }
         set_issubmit(true)
+        sessionStorage.setItem("message", JSON.stringify(message));
+        location.reload();
 
-        location.reload(); 
-      
     };
     return (
         <div className="login-page container  d-flex flex-column  align-items-center">
             <div className="d-flex flex-column justify-content-center align-items-center">
                 <div className="mb-5"></div>
 
-                <span className="cynthia text-center ">Cynthia</span>
-                <span className="slogan text-center ">
-                    Data-driven planning software <br />designed by Product Owners for Product
-                    Owners.
+                <span className="cynthia text-center ">Test register</span>
+                <p className="slogan text-center ">
+                    my testing slogan <br />my testing sloagan line 2
+                    .
 
-                </span>
+                </p>
 
             </div>
             <div className="mb-4"></div>
-            <div className="box  d-flex flex-column justify-content-evenly align-items-center ">
+            <div className="box  d-flex flex-column justify-content-start align-items-center ">
+                <div className="mb-4"></div>
 
 
-                <div className="d-flex flex-column align-items-start">
-                
-                <span className="title  text-center">Sign up</span>
-          
-              
-     
-                </div>
-                
+
+                <h2 className="title  text-center mb-3">Sign up</h2>
+
+
+                {!sessionStorage.getItem("message") && (
+                <div className="mb-5"></div>
+       
+                 )}
 
                 <div className="d-flex flex-column justify-content-around ">
-                <AlertMessage />
-              
-              
+                    <AlertMessage />
+
+
                     <form onSubmit={handleSubmit}>
 
                         <ImputText className="input_field form-control " {...propsData.imputEmail} />
-                        <div className="mb-2"></div>
-                        
+
+
                         <ImputText
                             className="input_field form-control"
                             {...propsData.imputPassword}
                         />
-                        <div className="mb-2"></div>
+
                         <ImputText
                             className="input_field form-control"
                             {...propsData.imputconfirmPassword}
                         />
-                        <div className="mb-4"></div>
+
                         <ButtonLarge
                             className="input_field "
                             {...propsData.buttonLarge}
                         />
-                        
-                        
+
+
                     </form>
                     <div className="mb-2"></div>
                     <hr className="separator" />
