@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom/client'
 import Login from './pages/login';
 import Reset from './pages/reset';
 import ConfirmReset from './pages/set_password';
-
+import Logout from './pages/logout';
 
 import Signup from './pages/signup';
 import {
@@ -17,8 +17,12 @@ import Home from './pages/home';
 
 const router = createBrowserRouter([
   {
-    path: "/ConfirmReset",
-    element: <ConfirmReset />,
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/logout",
+    element: <Logout />,
   },
   
   {

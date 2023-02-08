@@ -60,39 +60,58 @@ function Login() {
         event.preventDefault();
     
         const userData = {
-          username,
-          password,
+          "email":username,
+          "password":password,
         };
-        var res= await request.login(userData);
-        sessionStorage.setItem('user', res);
-        navigate('/');
+        if(validate())
+            {
+                var res= await request.login(userData);
+        
+            if (res["token"])
+            {
+                sessionStorage.setItem("user", JSON.stringify(res));
+            sessionStorage.setItem('message',JSON.stringify({"message":"welcome !","color":"success"}) );
+            navigate('/');
+            }
+            else{
+                sessionStorage.setItem('message',JSON.stringify({"message":"invalid email or password","color":"danger"}) );
+            }
+            }
+        else{
+            sessionStorage.setItem('message',JSON.stringify({"message":"Email and password are required","color":"danger"}) );
+        }
+            
+        location.reload();
       };
     return (
       
-          <div className="login-page container  d-flex flex-column  align-items-center">
-          <div className="d-flex flex-column justify-content-center align-items-center">
-              <div className="mb-5"></div>
+        <div className="login-page container  d-flex flex-column  align-items-center">
+        <div className="d-flex flex-column justify-content-center align-items-center">
+            <div className="mb-5"></div>
 
-              <span className="cynthia text-center ">Cynthia</span>
-              <span className="slogan text-center ">
-                  Data-driven planning software <br />designed by Product Owners for Product
-                  Owners.
+            <span className="cynthia text-center ">Cynthia</span>
+          <span className="slogan text-center ">
+              Data-driven planning software <br />designed by Product Owners for Product
+              Owners.
 
-              </span>
+          </span>
+        </div>
+        <div className="mb-4"></div>
+        <div className="box  d-flex flex-column justify-content-start align-items-center ">
+            <div className="mb-4"></div>
 
-          </div>
-          <div className="mb-4"></div>
-          <div className="box  d-flex flex-column align-items-center ">
 
 
-              <div className="mb-5"></div>
-              <span className="title  text-center">Login</span>
-              <AlertMessage />
+            <h2 className="title  text-center mb-3">Sign In</h2>
 
-              <div className="mb-5"></div>
-              <div className="mb-2"></div>
 
-              <div className="d-flex flex-column justify-content-around ">
+            {!sessionStorage.getItem("message") && (
+            <div className="mb-5"></div>
+   
+             )}
+
+            <div className="d-flex flex-column justify-content-around ">
+                <AlertMessage />
                   <form onSubmit={handleSubmit}>
 
                       <ImputText className="input_field form-control " {...propsData.imputEmail} />

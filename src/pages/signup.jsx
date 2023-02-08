@@ -81,7 +81,7 @@ function Signup() {
                 };
                 var res = await request.signup(userData);
                 console.log(res);
-                if (res.id) {
+                if (res["user_id"]) {
                     message = { "message": "Account has been created,check your email", color: "success" }
 
 
@@ -93,7 +93,7 @@ function Signup() {
             }
         }
         else {
-            message = { "message": "ll fields are required", color: "danger" }
+            message = { "message": "all fields are required", color: "danger" }
 
 
 
@@ -108,13 +108,12 @@ function Signup() {
             <div className="d-flex flex-column justify-content-center align-items-center">
                 <div className="mb-5"></div>
 
-                <span className="cynthia text-center ">Test register</span>
-                <p className="slogan text-center ">
-                    my testing slogan <br />my testing sloagan line 2
-                    .
+                <span className="cynthia text-center ">Cynthia</span>
+              <span className="slogan text-center ">
+                  Data-driven planning software <br />designed by Product Owners for Product
+                  Owners.
 
-                </p>
-
+              </span>
             </div>
             <div className="mb-4"></div>
             <div className="box  d-flex flex-column justify-content-start align-items-center ">
