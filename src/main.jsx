@@ -14,11 +14,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from './pages/home';
-
+import Teams from './pages/team';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Teams />,
   },
   {
     path: "/logout",

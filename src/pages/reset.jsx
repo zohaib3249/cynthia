@@ -67,7 +67,7 @@ function Reset() {
 
 
 
-            <h2 className="title  text-center mb-3">Password Recovery</h2>
+            <h2 className="title  text-center mb-3">Sign In</h2>
 
 
             {!sessionStorage.getItem("message") && (
