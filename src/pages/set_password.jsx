@@ -87,31 +87,39 @@ function ConfirmReset() {
     return (
         
         <div className="login-page container  d-flex flex-column  align-items-center">
-            <div className="d-flex flex-column justify-content-center align-items-center">
-                <div className="mb-5"></div>
-
-                <span className="cynthia text-center ">Cynthia</span>
-                <span className="slogan text-center ">
-                    Data-driven planning software <br />designed by Product Owners for Product
-                    Owners.
-
-                </span>
-
-            </div>
-            <div className="mb-4"></div>
-            <div className="box  d-flex flex-column justify-content-evenly align-items-center ">
-
-
+        <div className="d-flex flex-column justify-content-center align-items-center">
             <div className="mb-5"></div>
+
+            <span className="cynthia text-center ">Cynthia</span>
+          <span className="slogan text-center ">
+              Data-driven planning software <br />designed by Product Owners for Product
+              Owners.
+
+          </span>
+        </div>
+        <div className="mb-4"></div>
+        <div className="box  d-flex flex-column justify-content-start align-items-center " style={{"height" : "30%"}}>
+            <div className="mb-4"></div>
+
+
+
+            <h2 className="title  text-center mb-3">Sign In</h2>
+
+
+            {!sessionStorage.getItem("message") && (
+            <div className="mb-5"></div>
+            )}
             <span className="title mt-5 text-center">Sign up</span>
             {msg?
                 <AlertMessage message={msg}/>:<AlertMessage/>
                 }
-
+            
+                    
             <div className="mb-5"></div>
             <div className="mb-2"></div>
 
             <div className="d-flex flex-column justify-content-around ">
+                <AlertMessage />
                 <form onSubmit={handleSubmit}>
                 
                     <ImputText

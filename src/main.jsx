@@ -1,5 +1,6 @@
 import React from 'react'
 import "./assets/css/style.css";
+import "./assets/css/nav.css";
 import ReactDOM from 'react-dom/client'
 // import App from './App'
 // import './index.css'
@@ -14,11 +15,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from './pages/home';
-
+import Teams from './pages/team';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Teams />,
   },
   {
     path: "/logout",
