@@ -1,0 +1,21 @@
+.dropdown-toggle::after {
+    content: none;
+}
+
+.navbar-custom {
+    background-color: #F4F5F7;
+}
+
+.main_page {
+    margin-top: 1%;
+    ;
+    background-color: #F4F5F7;
+    /* background: #FAFAFA; */
+    border-radius: 10px;
+}
+
+.blue_color {
+    color: white;
+    background: #007BFF;
+    border-radius: 5px;
+}

@@ -6,10 +6,13 @@ import Link from "./components/Link";
 import ButtonLarge from "./components/ButtonLarge";
 import ButtonLarge2 from "./components/ButtonLarge2";
 import AlertMessage from "./components/alert";
+import * as request from './api';
 
 
 function Reset() {
-    const [username, setUsername] = React.useState(''); 
+    var message = ""
+    const [email, setEmail] = React.useState(''); 
+    const [msg, setMsg] = React.useState();
     const [errors, setErrors] = React.useState({
         password: false,
        
@@ -19,7 +22,7 @@ function Reset() {
             error:errors.email,
             type:"email",
             placeholder: "  Email address",
-            onchange_fun : setUsername
+            onchange_fun : setEmail
         },
         linkSignup:{
             "link":"/signup",
@@ -34,20 +37,43 @@ function Reset() {
     const validate = () => {
      
         const newErrors = {
-          email: username === '',
+          email: email === '',
     
         };
         setErrors(newErrors);
         return !Object.values(newErrors).some(Boolean);
       };
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
     
         const userData = {
-          username,
+          email,
         };
-        
-        alert(validate());
+        if(validate())
+        {
+            var res= await request.reset(userData);
+            console.log(res)
+    
+        if (res["message"])
+        {
+            console.log('sdfaadfda')
+            message = { "message": res['message'], color: "success" }
+            localStorage.setItem("user_id", res['user_id']);
+            
+            // sessionStorage.setItem("user_id", JSON.stringify(res));
+        // navigate('/');
+        }
+        else{
+            message = { "message": "An error occured please try again", color: "danger" }
+        }
+        }
+    else{
+        message = { "message": "Email required", color: "danger" }
+    }
+    // sessionStorage.setItem("message", JSON.stringify(msg));
+    setMsg(message)
+        // location.reload();
+
       };
     return (
         <div className="login-page container  d-flex flex-column  align-items-center">
@@ -76,7 +102,9 @@ function Reset() {
              )}
 
             <div className="d-flex flex-column justify-content-around ">
-                <AlertMessage />
+                {msg?
+                <AlertMessage message={msg}/>:<AlertMessage/>
+                }
                 <form onSubmit={handleSubmit}>
 
                     <ImputText className="input_field form-control " {...propsData.imputEmail} />

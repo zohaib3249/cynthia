@@ -26,13 +26,11 @@ function Teams() {
   });
   const [editingMember, setEditingMember] = React.useState(null);
   const [teamMembers, setTeamMembers] = React.useState([]);
-  React.useEffect(() => {
-    async function fetchData() {
-      var res = await request.fetchteams();
-      console.log(res)
-      setTeamMembers(res)
-    }
-    fetchData();
+  useEffect(() => {
+    fetch('https://yourapi.com/teams')
+      .then(response => response.json())
+      .then(data => setTeamMembers(data))
+      .catch(error => console.error(error));
   }, []);
   const propsData = {
     name: {
@@ -70,7 +68,7 @@ function Teams() {
   };
   const validate = () => {
     const newErrors = {
-      // name: name === '',
+      name: name === '',
       arrival_date: arrival_date === '',
       leavedate: leavedate === '',
     };
@@ -78,18 +76,17 @@ function Teams() {
     return !Object.values(newErrors).some(Boolean);
   };
   const handleAddMember = async () => {
-    
+    if (!validate()) {
+      return;
+    }
     const newMember = {
-      "name":name,
-      "arrival_date":arrival_date,
-      "leavedate":leavedate,
-      "comment":comment,
+      name,
+      arrival_date,
+      leavedate,
+      comment,
     };
     try {
-     
       const response = await request.addMember(newMember);
-      debugger;
-    
       if (response.status === 201) {
         setTeamMembers([...teamMembers, response.data]);
         setname('');
@@ -154,7 +151,6 @@ function Teams() {
             </div>
             <div className="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div className="modal-dialog modal-dialog-centered" role="document">
-              <form onSubmit={handleAddMember}>
                 <div className="modal-content">
                   <div className="modal-header">
                     <h5 className="modal-title" id="exampleModalLongTitle">Add New Memeber</h5>
@@ -163,7 +159,6 @@ function Teams() {
                     </button>
                   </div>
                   <div className="modal-body">
-                  
                     <div className="container">
                       <div className="form-group">
                         <label for="exampleFormControlTextarea1">Name</label>
@@ -189,15 +184,13 @@ function Teams() {
 
 
                     </div>
-                    
                   </div>
                   <div className="modal-footer d-flex justify-content-between ">
 
                     <button type="button" className="button-large-2" data-dismiss="modal">Close</button>
-                    <button type="submit" className="btn btn-primary">Save changes</button>
+                    <button type="button" className="btn btn-primary">Save changes</button>
                   </div>
                 </div>
-                </form>
               </div>
             </div>
 

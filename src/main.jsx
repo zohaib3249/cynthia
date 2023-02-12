@@ -1,5 +1,6 @@
 import React from 'react'
 import "./assets/css/style.css";
+import "./assets/css/nav.css";
 import ReactDOM from 'react-dom/client'
 // import App from './App'
 // import './index.css'
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />,
+  },
+  {
+    path: "/reset_password",
+    element: <ConfirmReset />,
   },
  
 ]);
