@@ -6,12 +6,20 @@ import Link from "./components/Link";
 import ButtonLarge from "./components/ButtonLarge";
 import ButtonLarge2 from "./components/ButtonLarge2";
 import AlertMessage from "./components/alert";
+import * as request from "./api"
+import { useNavigate } from 'react-router-dom';
+
 
 
 
 function ConfirmReset() {
+    const navigate = useNavigate()
     const [password, setPassword] = React.useState('');
     const [confirmpassword, setcomfimrPassword] = React.useState('');
+    const [msg, setMsg] = React.useState();
+    var user_id = localStorage.getItem('user_id')
+    var message = ''
+
 
     const [errors, setErrors] = React.useState({
         password: false,
@@ -41,7 +49,6 @@ function ConfirmReset() {
     const validate = () => {
      
         const newErrors = {
-          email: username === '',
           password: password === '',
           confirmpassword: confirmpassword === ''
           // ...
@@ -49,15 +56,33 @@ function ConfirmReset() {
         setErrors(newErrors);
         return !Object.values(newErrors).some(Boolean);
       };
-      const handleSubmit = (event) => {
+      const handleSubmit = async (event) => {
         event.preventDefault();
     
         const userData = {
-          username,
+          user_id,
           password,
+          confirmpassword
         };
-        
-        alert(validate());
+        if(validate() && password === confirmpassword)
+        {
+            var res= await request.set_new_password(userData);
+            console.log(res)
+    
+        if (res["message"])
+        {
+            message = { "message": res['message'], color: "success" }
+            console.log(message)
+            navigate('/');
+        }
+        else{
+            message = { "message": res['error'], color: "success" }
+        }
+        }
+    else{
+        message = { "message": "Password should be same", color: "danger" }
+    }
+    setMsg(message)
       };
     return (
         
@@ -79,7 +104,9 @@ function ConfirmReset() {
 
             <div className="mb-5"></div>
             <span className="title mt-5 text-center">Sign up</span>
-            <AlertMessage />
+            {msg?
+                <AlertMessage message={msg}/>:<AlertMessage/>
+                }
 
             <div className="mb-5"></div>
             <div className="mb-2"></div>
