@@ -1,6 +1,6 @@
 
 import * as React from "react";
-import "../assets/css/signup.css";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as request from './api';
 import AlertMessage from './components/alert'
@@ -8,10 +8,13 @@ import ImputText from "./components/ImputText";
 import Link from "./components/Link";
 import ButtonLarge from "./components/ButtonLarge";
 import ButtonLarge2 from "./components/ButtonLarge2";
+
+import Alert from 'react-bootstrap/Alert';
 function Signup() {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [confirmpassword, setcomfimrPassword] = React.useState('');
+    const [is_submit, set_issubmit] = React.useState(false);
 
     const [errors, setErrors] = React.useState({
         email: false,
@@ -52,75 +55,109 @@ function Signup() {
 
         const newErrors = {
             email: username === '',
+
             password: password === '',
             confirmpassword: confirmpassword === ''
-            // ...
+
         };
+
         setErrors(newErrors);
         return !Object.values(newErrors).some(Boolean);
     };
     const handleSubmit = async (event) => {
+        var message = ""
         event.preventDefault();
         if (validate()) {
+            if (password != confirmpassword) {
+                message = { "message": "Password dose not matched", color: "danger" }
 
-            const userData = {
-                username,
-                password,
-            };
-            var res = await request.login(userData);
-            if (res.id) {
-                alert("Account has been created,check your email")
-            } else {
-                if(res.email)
-                {
-                    alert(res.email[0])
-                }
-                else{
-                    res.password[0]
+            }
+            else {
+
+
+                const userData = {
+                    "email": username,
+                    "password": password,
+                };
+                var res = await request.signup(userData);
+                console.log(res);
+                if (res["user_id"]) {
+                    message = { "message": "Account has been created,check your email", color: "success" }
+
+
+                } else {
+                    message = { "message": res, color: "danger" }
+
+
                 }
             }
         }
-        else{
-            alert("all fields are required")
+        else {
+            message = { "message": "all fields are required", color: "danger" }
+
+
+
         }
+        set_issubmit(true)
+        sessionStorage.setItem("message", JSON.stringify(message));
+        location.reload();
 
-
-        alert(validate());
     };
     return (
-        <div className="login-page container">
-            <span className="cynthia">Cynthia</span>
-            <span className="slogan">
-                Data-driven planning software designed by Product Owners for Product
-                Owners.
+        <div className="login-page container  d-flex flex-column  align-items-center">
+            <div className="d-flex flex-column justify-content-center align-items-center">
+                <div className="mb-5"></div>
 
-            </span>
+                <span className="cynthia text-center ">Cynthia</span>
+              <span className="slogan text-center ">
+                  Data-driven planning software <br />designed by Product Owners for Product
+                  Owners.
 
-            <div className="box">
-                <div className="col-md-8">
-                    <span className="title">Sign up</span>
-                    {/* <AlertMessage variant="success" /> */}
+              </span>
+            </div>
+            <div className="mb-4"></div>
+            <div className="box  d-flex flex-column justify-content-start align-items-center ">
+                <div className="mb-4"></div>
 
-                </div>
 
-                <div className="container">
+
+                <h2 className="title  text-center mb-3">Sign up</h2>
+
+
+                {!sessionStorage.getItem("message") && (
+                <div className="mb-5"></div>
+       
+                 )}
+
+                <div className="d-flex flex-column justify-content-around ">
+                    <AlertMessage />
+
+
                     <form onSubmit={handleSubmit}>
 
-                        <ImputText className="imput-email-instance" {...propsData.imputEmail} />
+                        <ImputText className="input_field form-control " {...propsData.imputEmail} />
+
+
                         <ImputText
-                            className="imput-password-instance-1"
+                            className="input_field form-control"
                             {...propsData.imputPassword}
                         />
+
                         <ImputText
-                            className="imput-password-instance-2"
+                            className="input_field form-control"
                             {...propsData.imputconfirmPassword}
                         />
+
                         <ButtonLarge
-                            className="button-large-instance-1"
+                            className="input_field "
                             {...propsData.buttonLarge}
                         />
+
+
                     </form>
+                    <div className="mb-2"></div>
                     <hr className="separator" />
+                    <div className="mb-2"></div>
                     <Link className="link-signup-instance-1" {...propsData.linkSignup} />
                 </div>
             </div>

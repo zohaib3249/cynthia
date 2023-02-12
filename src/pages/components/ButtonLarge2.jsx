@@ -4,7 +4,7 @@ const ButtonLarge2 = (props) => {
   return (
     <a href={props.link}>
       <button className={`button-large-2 ${props.className || ""}`}>
-      <div className="rectangle-2-1">
+      <div className="">
         <span className="new-feature">
           {props.newFeature || "Forgot you password ?"}
         </span>

@@ -1,12 +1,18 @@
 
 import * as React from "react";
-import "../assets/css/reset.css";
+
 import ImputText from "./components/ImputText";
 import Link from "./components/Link";
 import ButtonLarge from "./components/ButtonLarge";
 import ButtonLarge2 from "./components/ButtonLarge2";
+import AlertMessage from "./components/alert";
+import * as request from './api';
+
+
 function Reset() {
-    const [username, setUsername] = React.useState(''); 
+    var message = ""
+    const [email, setEmail] = React.useState(''); 
+    const [msg, setMsg] = React.useState();
     const [errors, setErrors] = React.useState({
         password: false,
        
@@ -16,7 +22,7 @@ function Reset() {
             error:errors.email,
             type:"email",
             placeholder: "  Email address",
-            onchange_fun : setUsername
+            onchange_fun : setEmail
         },
         linkSignup:{
             "link":"/signup",
@@ -31,47 +37,95 @@ function Reset() {
     const validate = () => {
      
         const newErrors = {
-          email: username === '',
+          email: email === '',
     
         };
         setErrors(newErrors);
         return !Object.values(newErrors).some(Boolean);
       };
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
     
         const userData = {
-          username,
+          email,
         };
-        
-        alert(validate());
+        if(validate())
+        {
+            var res= await request.reset(userData);
+            console.log(res)
+    
+        if (res["message"])
+        {
+            console.log('sdfaadfda')
+            message = { "message": res['message'], color: "success" }
+            localStorage.setItem("user_id", res['user_id']);
+            
+            // sessionStorage.setItem("user_id", JSON.stringify(res));
+        // navigate('/');
+        }
+        else{
+            message = { "message": "An error occured please try again", color: "danger" }
+        }
+        }
+    else{
+        message = { "message": "Email required", color: "danger" }
+    }
+    // sessionStorage.setItem("message", JSON.stringify(msg));
+    setMsg(message)
+        // location.reload();
+
       };
     return (
-        <div className="reset-login-page">
-            <span className="cynthia">Cynthia</span>
-            <span className="slogan">
-                Data-driven planning software designed by Product Owners for Product
-                Owners.
-            </span>
+        <div className="login-page container  d-flex flex-column  align-items-center">
+        <div className="d-flex flex-column justify-content-center align-items-center">
+            <div className="mb-5"></div>
 
-            <div className="reset-box">
-                <span className="title">Password recovery</span>
+            <span className="cynthia text-center ">Cynthia</span>
+          <span className="slogan text-center ">
+              Data-driven planning software <br />designed by Product Owners for Product
+              Owners.
+
+          </span>
+        </div>
+        <div className="mb-4"></div>
+        <div className="box  d-flex flex-column justify-content-start align-items-center ">
+            <div className="mb-4"></div>
+
+
+
+            <h2 className="title  text-center mb-3">Password Recovery</h2>
+
+
+            {!sessionStorage.getItem("message") && (
+            <div className="mb-5"></div>
+   
+             )}
+
+            <div className="d-flex flex-column justify-content-around ">
+                {msg?
+                <AlertMessage message={msg}/>:<AlertMessage/>
+                }
                 <form onSubmit={handleSubmit}>
-                <ImputText className="imput-email-instance" {...propsData.imputEmail} />
-                
-                <ButtonLarge
-                    className="button-large-instance-1-reset"
-                    {...propsData.buttonLarge}
-                />
+
+                    <ImputText className="input_field form-control " {...propsData.imputEmail} />
+                    
+                    
+                    <div className="mb-4"></div>
+                    <ButtonLarge
+                        className="input_field "
+                        {...propsData.buttonLarge}
+                    />
+
                 </form>
-                <hr className="separator-reset" />
-                <Link className="link-signup-instance-1-reset" {...propsData.linkSigin} />
-                <Link className="link-signup-instance-2-reset" {...propsData.linkSignup} />
+                <div className="mb-2"></div>
+                <hr className="separator" />
+                <div className="mb-2"></div>
+                <Link className="link-signup-instance-1" {...propsData.linkSignup} />
             </div>
-
-
         </div>
 
+
+    </div>
 
 
     )

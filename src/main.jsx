@@ -1,12 +1,12 @@
 import React from 'react'
-
+import "./assets/css/style.css";
 import ReactDOM from 'react-dom/client'
 // import App from './App'
 // import './index.css'
 import Login from './pages/login';
 import Reset from './pages/reset';
-
-
+import ConfirmReset from './pages/set_password';
+import Logout from './pages/logout';
 
 import Signup from './pages/signup';
 import {
@@ -20,6 +20,15 @@ const router = createBrowserRouter([
     path: "/",
     element: <Home />,
   },
+  {
+    path: "/logout",
+    element: <Logout />,
+  },
+  
+  {
+    path: "/reset",
+    element: <Reset />,
+  },
   
   {
     path: "/login",
@@ -30,9 +39,10 @@ const router = createBrowserRouter([
     element: <Signup />,
   },
   {
-    path: "/reset",
-    element: <Reset />,
+    path: "/reset_password",
+    element: <ConfirmReset />,
   },
+ 
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

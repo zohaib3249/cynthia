@@ -1,14 +1,13 @@
 
 import * as React from "react";
 
-import "../assets/css/login.css";
 import * as request from './api';
 import ImputText from "./components/ImputText";
 import Link from "./components/Link";
 import ButtonLarge from "./components/ButtonLarge";
 import ButtonLarge2 from "./components/ButtonLarge2";
 import { useNavigate } from 'react-router-dom';
-
+import AlertMessage from "./components/alert";
 
 
 function Login() {
@@ -61,46 +60,89 @@ function Login() {
         event.preventDefault();
     
         const userData = {
-          username,
-          password,
+          "email":username,
+          "password":password,
         };
-        var res= await request.login(userData);
-        sessionStorage.setItem('user', res);
-        navigate('/');
+        if(validate())
+            {
+                var res= await request.login(userData);
+        
+            if (res["token"])
+            {
+                sessionStorage.setItem("user", JSON.stringify(res));
+            sessionStorage.setItem('message',JSON.stringify({"message":"welcome !","color":"success"}) );
+            navigate('/');
+            }
+            else{
+                sessionStorage.setItem('message',JSON.stringify({"message":"invalid email or password","color":"danger"}) );
+            }
+            }
+        else{
+            sessionStorage.setItem('message',JSON.stringify({"message":"Email and password are required","color":"danger"}) );
+        }
+            
+        location.reload();
       };
     return (
-        <div className="login-page">
-           
-            <span className="cynthia">Cynthia</span>
-            <span className="slogan">
-                Data-driven planning software designed by Product Owners for Product
-                Owners.
-            </span>
+      
+        <div className="login-page container  d-flex flex-column  align-items-center">
+        <div className="d-flex flex-column justify-content-center align-items-center">
+            <div className="mb-5"></div>
 
-            <div className="login-box">
-                <span className="title">Log In</span>
-                <form onSubmit={handleSubmit}>
-                <ImputText className="imput-email-instance" {...propsData.imputEmail} />
-                <ImputText
-                    className="imput-password-instance-1"
-                    {...propsData.imputPassword}
-                />
-                <ButtonLarge
-                    className="login_button"
-                    {...propsData.buttonLarge}
-                />
-                </form>
-                <ButtonLarge2
-                    className="reset_button"
+            <span className="cynthia text-center ">Cynthia</span>
+          <span className="slogan text-center ">
+              Data-driven planning software <br />designed by Product Owners for Product
+              Owners.
+
+          </span>
+        </div>
+        <div className="mb-4"></div>
+        <div className="box  d-flex flex-column justify-content-start align-items-center ">
+            <div className="mb-4"></div>
+
+
+
+            <h2 className="title  text-center mb-3">Sign In</h2>
+
+
+            {!sessionStorage.getItem("message") && (
+            <div className="mb-5"></div>
+   
+             )}
+
+            <div className="d-flex flex-column justify-content-around ">
+                <AlertMessage />
+                  <form onSubmit={handleSubmit}>
+
+                      <ImputText className="input_field form-control " {...propsData.imputEmail} />
+                      <div className="mb-2"></div>
+                      <ImputText
+                          className="input_field form-control"
+                          {...propsData.imputPassword}
+                      />
+                      <div className="mb-2"></div>
+                     
+                      <div className="mb-4"></div>
+                      <ButtonLarge
+                          className="input_field "
+                          {...propsData.buttonLarge}
+                      />
+
+                  </form>
+                  <div className="mb-4"></div>
+                  <ButtonLarge2
+                    className="input_field"
                     {...propsData.buttonLarge2}
                 />
-                <hr className="separator" />
-                <Link className="link-signup-instance-1" {...propsData.linkSignup} />
-            </div>
+                  <div className="mb-2"></div>
+                  <hr className="separator" />
+                  <div className="mb-2"></div>
+                  <Link className="link-signup-instance-1" {...propsData.linkSignup} />
+              </div>
+          </div>
 
-            
-        </div>
 
+      </div>
 
 
     )

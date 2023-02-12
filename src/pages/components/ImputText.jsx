@@ -3,7 +3,7 @@ import "./ImputText.css";
 const ImputText = (props) => {
   
   return (
-    <div className={`input-container ${props.error ? 'error' : ''}`}>
+    <div className={`input-container mb-3 ${props.error ? 'error' : ''}`}>
     <input type={props.type}
       className={`imput-text ${props.className || ""}`}
       placeholder={props.placeholder}
