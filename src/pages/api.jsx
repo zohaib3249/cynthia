@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const API_URL = 'http://localhost:8000/';
-const API_URL = 'https://44f4-39-46-44-115.in.ngrok.io/';
+const API_URL = 'http://localhost:8000/';
+// const API_URL = 'https://44f4-39-46-44-115.in.ngrok.io/';
 // const API_URL = 'https://0212-39-46-44-115.in.ngrok.io/';
 const headers = {'Content-Type': 'application/json'}
 
@@ -35,9 +35,10 @@ export const reset = (data) => {
       .catch(response => response.response.data);
   };
   export const addMember = (data) => {
+    // debugger;
     return axios.post(`${API_URL}add_member`, data)
       .then(response => response.data)
-      .catch(error => console.error(error));
+      .catch(response => response.response.data);
   };
   
   export const deletememeber = (data) => {
