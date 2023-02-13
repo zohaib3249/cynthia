@@ -48,10 +48,10 @@ function Teams() {
       onchange_fun: setarrival_date
     },
     leavedate: {
-      error: errors.arrival_date,
+      error: errors.leavedate,
       type: "date",
       placeholder: "",
-      onchange_fun: setarrival_date
+      onchange_fun: setleavedate
     },
     comment: {
       error: errors.comment,
@@ -82,12 +82,12 @@ function Teams() {
     const newMember = {
       "name":name,
       "arrival_date":arrival_date,
-      "leavedate":leavedate,
+      "leave_date":leavedate,
       "comment":comment,
     };
     try {
-     
       const response = await request.addMember(newMember);
+      console.log(response)
       debugger;
     
       if (response.status === 201) {
@@ -98,6 +98,8 @@ function Teams() {
         setcomment('');
       }
     } catch (error) {
+      console.log('error')
+      console.log(response)
       console.error(error);
     }
 
