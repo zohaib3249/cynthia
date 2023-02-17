@@ -56,35 +56,23 @@ function RoadMap() {
         <div className="mb-5"></div>
         <div className="container">
 
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Feature Name</th>
-                <th scope="col" className="testtt">Date</th>
-                <th scope="col" className="testtt">Date</th>
-                <th scope="col" className="testtt">Date</th>
-               
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-              <td><input type="text" className="square" /></td>
-              <td><input type="text" className="square" /></td>
-              <td><input type="text" className="square" /></td>
-              <td><input type="text" className="square" /></td>
-              <td><input type="text" className="square" /></td>
-              <td><input type="text" className="square" /></td>
-              </tr>
-
-            </tbody>
-          </table>
+          <div className="row">
+            <div className="col-md-2 row">
+              
 
 
+            </div>
+            <div className="col-md-2 row"><p>Feature Name</p></div>
+            <div className="col-md-8 row"></div>
+            
+          </div>
 
 
-          <hr className="hr_line" />
+        
 
+          
 
+       
 
         </div>
 
