@@ -44,6 +44,14 @@ function ConfirmReset() {
         buttonLarge: {
             newFeature: "Validate",
         },
+        linkSignup:{
+            "link":"/signup",
+            "name":"Sign Up"
+        },
+        linkSigin:{
+            "link":"/login",
+            "name":"Login In"
+        }
         
     };
     const validate = () => {
@@ -98,28 +106,27 @@ function ConfirmReset() {
           </span>
         </div>
         <div className="mb-4"></div>
-        <div className="box  d-flex flex-column justify-content-start align-items-center " style={{"height" : "30%"}}>
+        <div className="box  d-flex flex-column justify-content-start align-items-center ">
             <div className="mb-4"></div>
 
 
 
-            <h2 className="title  text-center mb-3">Sign In</h2>
+            <h2 className="title  text-center mb-1">Password reset</h2>
 
 
+            
+            
+                    
+            
+
+            <div className="d-flex flex-column justify-content-around ">
             {!sessionStorage.getItem("message") && (
             <div className="mb-5"></div>
             )}
-            <span className="title mt-5 text-center">Sign up</span>
+            
             {msg?
                 <AlertMessage message={msg}/>:<AlertMessage/>
                 }
-            
-                    
-            <div className="mb-5"></div>
-            <div className="mb-2"></div>
-
-            <div className="d-flex flex-column justify-content-around ">
-                <AlertMessage />
                 <form onSubmit={handleSubmit}>
                 
                     <ImputText
@@ -140,7 +147,10 @@ function ConfirmReset() {
                 </form>
                 <div className="mb-2"></div>
                 <hr className="separator" />
+                
+                <Link className="link-signup-instance-1" {...propsData.linkSigin} />
                 <div className="mb-2"></div>
+                
                 <Link className="link-signup-instance-1" {...propsData.linkSignup} />
             </div>
         </div>

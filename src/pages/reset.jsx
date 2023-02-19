@@ -88,20 +88,20 @@ function Reset() {
           </span>
         </div>
         <div className="mb-4"></div>
-        <div className="box  d-flex flex-column justify-content-start align-items-center ">
+        <div className="box  d-flex flex-column justify-content-start align-items-center " style={{height:"400px"}}>
             <div className="mb-4"></div>
 
 
 
-            <h2 className="title  text-center mb-3">Sign In</h2>
+            <h2 className="title  text-center mb-3">Password Recovery</h2>
 
 
             {!sessionStorage.getItem("message") && (
-            <div className="mb-5"></div>
+            <div className="mb-3"></div>
    
              )}
 
-            <div className="d-flex flex-column justify-content-around ">
+            <div className="d-flex flex-column justify-content-between ">
                 {msg?
                 <AlertMessage message={msg}/>:<AlertMessage/>
                 }
@@ -110,7 +110,7 @@ function Reset() {
                     <ImputText className="input_field form-control " {...propsData.imputEmail} />
                     
                     
-                    <div className="mb-4"></div>
+                    <div className="mb-5"></div>
                     <ButtonLarge
                         className="input_field "
                         {...propsData.buttonLarge}
@@ -120,7 +120,7 @@ function Reset() {
                 <div className="mb-2"></div>
                 <hr className="separator" />
                 <div className="mb-2"></div>
-                <Link className="link-signup-instance-1" {...propsData.linkSignup} />
+                <Link className="link-signup-instance-1" {...propsData.linkSigin} />
             </div>
         </div>
 

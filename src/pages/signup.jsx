@@ -125,7 +125,7 @@ function Signup() {
 
 
                 {!sessionStorage.getItem("message") && (
-                <div className="mb-5"></div>
+                <div className="mb-2"></div>
        
                  )}
 

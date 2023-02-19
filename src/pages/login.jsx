@@ -102,11 +102,11 @@ function Login() {
 
 
 
-            <h2 className="title  text-center mb-3">Sign In</h2>
+            <h2 className="title  text-center mb-3">Log In</h2>
 
 
             {!sessionStorage.getItem("message") && (
-            <div className="mb-5"></div>
+            <div className="mb-2"></div>
    
              )}
 
@@ -129,14 +129,14 @@ function Login() {
                       />
 
                   </form>
-                  <div className="mb-4"></div>
+                  <div className="mb-3"></div>
                   <ButtonLarge2
                     className="input_field"
                     {...propsData.buttonLarge2}
                 />
-                  <div className="mb-2"></div>
+                  <div className="mb-1"></div>
                   <hr className="separator" />
-                  <div className="mb-2"></div>
+                  <div className="mb-1"></div>
                   <Link className="link-signup-instance-1" {...propsData.linkSignup} />
               </div>
           </div>
