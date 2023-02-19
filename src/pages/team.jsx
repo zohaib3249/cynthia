@@ -78,18 +78,18 @@ function Teams() {
     return !Object.values(newErrors).some(Boolean);
   };
   const handleAddMember = async () => {
-    
+
     const newMember = {
-      "name":name,
-      "arrival_date":arrival_date,
-      "leave_date":leavedate,
-      "comment":comment,
+      "name": name,
+      "arrival_date": arrival_date,
+      "leave_date": leavedate,
+      "comment": comment,
     };
     try {
       const response = await request.addMember(newMember);
       console.log(response)
       debugger;
-    
+
       if (response.status === 201) {
         setTeamMembers([...teamMembers, response.data]);
         setname('');
@@ -139,7 +139,57 @@ function Teams() {
     <div className="">
       <NavBar />
       <div className="container">
+      <div className="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div className="modal-dialog modal-dialog-centered" role="document">
+                <form onSubmit={handleAddMember}>
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5 className="modal-title" id="exampleModalLongTitle">Add New Member</h5>
+                      <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div className="modal-body">
+
+                      <div className="container">
+                        <div className="form-group ">
+                          <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Name Field">Name</label>
+                          <ImputText className="input_field form-control " {...propsData.name} />
+                        
+                        </div>
+                        
+                        <div className="mb-2"></div>
+                        <div className="form-group" >
+                          <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Arival Date">Arival Date</label>
+                          <ImputText className="input_field form-control " {...propsData.leavedate} />
+                        </div>
+                        <div className="mb-2"></div>
+                        <div className="form-group">
+                          <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Leave Date">Leave Date</label>
+                          <ImputText className="input_field form-control " {...propsData.arrival_date} />
+                        </div>
+                        <div className="mb-2"></div>
+                        <div className="form-group">
+                          <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Comment">Comment</label>
+                          <TextArea {...propsData.comment} />
+
+                        </div>
+
+
+                      </div>
+
+                    </div>
+                    <div className="modal-footer d-flex justify-content-between ">
+
+                      <button type="button" className="button-large-2" data-dismiss="modal">Close</button>
+                      <button type="submit" className="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
         <div className="main_page flex-column d-flex justify-content-center">
+          
           <div className="row ">
             <div className="col-md-3"></div>
             <div className="col-md-6 flex-column d-flex justify-content-center">
@@ -154,54 +204,7 @@ function Teams() {
               </button>
 
             </div>
-            <div className="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-              <div className="modal-dialog modal-dialog-centered" role="document">
-              <form onSubmit={handleAddMember}>
-                <div className="modal-content">
-                  <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLongTitle">Add New Memeber</h5>
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div className="modal-body">
-                  
-                    <div className="container">
-                      <div className="form-group">
-                        <label for="exampleFormControlTextarea1">Name</label>
-                        <ImputText className="input_field form-control " {...propsData.name} />
-
-                      </div>
-                      <div className="mb-2"></div>
-                      <div className="form-group">
-                        <label for="exampleFormControlTextarea1">Leave Date</label>
-                        <ImputText className="input_field form-control " {...propsData.arrival_date} />
-                      </div>
-                      <div className="mb-2"></div>
-                      <div className="form-group">
-                        <label for="exampleFormControlTextarea1">Arival Date</label>
-                        <ImputText className="input_field form-control " {...propsData.leavedate} />
-                      </div>
-                      <div className="mb-2"></div>
-                      <div className="form-group">
-                        <label for="exampleFormControlTextarea1">Comment</label>
-                        <TextArea {...propsData.comment} />
-
-                      </div>
-
-
-                    </div>
-                    
-                  </div>
-                  <div className="modal-footer d-flex justify-content-between ">
-
-                    <button type="button" className="button-large-2" data-dismiss="modal">Close</button>
-                    <button type="submit" className="btn btn-primary">Save changes</button>
-                  </div>
-                </div>
-                </form>
-              </div>
-            </div>
+           
 
           </div>
 
@@ -211,7 +214,7 @@ function Teams() {
               <tr>
 
                 <th scope="col">Name</th>
-                <th scope="col">Status</th>
+
                 <th scope="col">Arrival Date</th>
                 <th scope="col">Leave Date</th>
                 <th scope="col">Action</th>
@@ -241,15 +244,16 @@ function Teams() {
                     </a>
                   </td>
 
-
+                  <tr class="border-bottom"></tr>
                 </tr>
+
               ))}
               <tr>
 
                 <th scope="">1</th>
 
                 <td>Mark</td>
-                <td>Otto</td>
+
                 <td>@mdo</td>
 
                 <td >

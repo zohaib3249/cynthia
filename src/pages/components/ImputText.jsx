@@ -8,7 +8,7 @@ const ImputText = (props) => {
       className={`imput-text ${props.className || ""}`}
       placeholder={props.placeholder}
       onChange={e => props.onchange_fun(e.target.value)}
-    />
+    required  />
     
     {props.error && (
       <div className="error-icon">

@@ -47,7 +47,7 @@ function Header() {
             </a>
             <ul className="dropdown-menu">
 
-              <li><a className="dropdown-item" href="#">Logout</a></li>
+              <li><a className="dropdown-item" href="/logout">Logout</a></li>
             </ul>
           </div>
         </div>
