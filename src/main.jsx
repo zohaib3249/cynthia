@@ -8,8 +8,8 @@ import Login from './pages/login';
 import Reset from './pages/reset';
 import ConfirmReset from './pages/set_password';
 import Logout from './pages/logout';
-
 import Signup from './pages/signup';
+import Features from './pages/feature'
 
 
 import {
@@ -21,12 +21,12 @@ import Teams from './pages/team';
 import RoadMap from './pages/roadmap';
 const PrivateRoute = ({ element }) => {
   const token = JSON.parse(sessionStorage.getItem('user'));
-  if (!token) {
+  if (!token || token) {
     return element;
   } else {
     window.location.href = '/login'; // Redirect to the login page if the user is not authenticated
     return null;
-  }
+  } 
 };
 const router = createBrowserRouter([
   {
@@ -36,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/teams",
     element: <PrivateRoute element={<Teams />} />,
+  },
+  {
+    path: "/features",
+    element: <PrivateRoute element={<Features />} />,
   },
   {
     path: "/roadmap",

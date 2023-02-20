@@ -6,7 +6,6 @@ const API_URL = 'http://localhost:8000/';
 const headers = {'Content-Type': 'application/json'}
 function get_header()
 {
-  debugger;
   const token = JSON.parse(sessionStorage.getItem("user"))?.token;
     const authHeader = token ? { Authorization: `Token ${token}` } : {};
     const config = { headers: { ...headers, ...authHeader } };
@@ -14,7 +13,7 @@ function get_header()
 }
 export const login = (data) => {
  
-  return axios.post(`${API_URL}login`,get_header())
+  return axios.post(`${API_URL}login`,data,get_header())
     .then(response => response.data)
     .catch(response => response.response.data);
 };

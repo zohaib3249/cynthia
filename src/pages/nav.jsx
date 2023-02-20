@@ -19,7 +19,7 @@ function Header() {
                 <a className="nav-link active center-text item" aria-current="page" href="/roadmap">Roadmap</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link active item" aria-current="page" href="#">Features</a>
+                <a className="nav-link active item" aria-current="page" href="/features">Features</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link active item" aria-current="page" href="#">Release</a>
