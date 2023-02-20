@@ -21,7 +21,7 @@ import Teams from './pages/team';
 import RoadMap from './pages/roadmap';
 const PrivateRoute = ({ element }) => {
   const token = JSON.parse(sessionStorage.getItem('user'));
-  if (token) {
+  if (!token) {
     return element;
   } else {
     window.location.href = '/login'; // Redirect to the login page if the user is not authenticated
@@ -45,12 +45,12 @@ const router = createBrowserRouter([
     path: "/logout",
     element: <PrivateRoute element={<Logout />} />,
   },
-  
+
   {
     path: "/reset",
     element: <Reset />,
   },
-  
+
   {
     path: "/login",
     element: <Login />,
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
     path: "/reset_password",
     element: <ConfirmReset />,
   },
- 
+
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

@@ -145,8 +145,8 @@ function Teams() {
                   <div className="modal-content">
                     <div className="modal-header">
                       <h5 className="modal-title" id="exampleModalLongTitle">Add New Member</h5>
-                      <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                      <button type="button" className="close btn btn-light" data-dismiss="modal" aria-label="Close">
+                        X
                       </button>
                     </div>
                     <div className="modal-body">
@@ -182,7 +182,7 @@ function Teams() {
                     <div className="modal-footer d-flex justify-content-between ">
 
                       <button type="button" className="button-large-2" data-dismiss="modal">Close</button>
-                      <button type="submit" className="btn btn-primary">Save changes</button>
+                      <button type="submit" className="btn btn-primary">Add</button>
                     </div>
                   </div>
                 </form>
