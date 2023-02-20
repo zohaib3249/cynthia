@@ -12,7 +12,7 @@ import AlertMessage from "./components/alert";
 import NavBar from "./nav";
 
 
-function Teams() {
+function Features() {
   const navigate = useNavigate();
   const [name, setname] = React.useState('');
   const [arrival_date, setarrival_date] = React.useState('');
@@ -26,7 +26,7 @@ function Teams() {
   });
   const [editingMember, setEditingMember] = React.useState(null);
   const [teamMembers, setTeamMembers] = React.useState([]);
-  useEffect(() => {
+  React.useEffect(() => {
     fetch('https://yourapi.com/teams')
       .then(response => response.json())
       .then(data => setTeamMembers(data))
@@ -139,13 +139,13 @@ function Teams() {
             <div className="col-md-3"></div>
             <div className="col-md-6 flex-column d-flex justify-content-center">
               <h1>
-                Team member list
+                Feature list
               </h1>
             </div>
 
             <div className="col-md-3 flex-column d-flex justify-content-center align-items-center align-items-center">
               <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                + New Member
+                + New Feature
               </button>
 
             </div>
@@ -153,7 +153,7 @@ function Teams() {
               <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
                   <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLongTitle">Add New Memeber</h5>
+                    <h5 className="modal-title" id="exampleModalLongTitle">Feature List</h5>
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -167,12 +167,12 @@ function Teams() {
                       </div>
                       <div className="mb-2"></div>
                       <div className="form-group">
-                        <label for="exampleFormControlTextarea1">Leave Date</label>
+                        <label for="exampleFormControlTextarea1">state</label>
                         <ImputText className="input_field form-control " {...propsData.arrival_date} />
                       </div>
                       <div className="mb-2"></div>
                       <div className="form-group">
-                        <label for="exampleFormControlTextarea1">Arival Date</label>
+                        <label for="exampleFormControlTextarea1">estimate Wd</label>
                         <ImputText className="input_field form-control " {...propsData.leavedate} />
                       </div>
                       <div className="mb-2"></div>
@@ -273,4 +273,4 @@ function Teams() {
   )
 }
 
-export default Teams;
+export default Features;

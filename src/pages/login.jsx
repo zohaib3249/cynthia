@@ -65,12 +65,13 @@ function Login() {
         };
         if(validate())
             {
+                console.log(userData)
                 var res= await request.login(userData);
         
             if (res["token"])
             {
-                sessionStorage.setItem("user", JSON.stringify(res));
-            sessionStorage.setItem('message',JSON.stringify({"message":"welcome !","color":"success"}) );
+                sessionStorage.setItem("user", res['token']);
+                sessionStorage.setItem('message',JSON.stringify({"message":"welcome !","color":"success"}) );
             navigate('/');
             }
             else{
