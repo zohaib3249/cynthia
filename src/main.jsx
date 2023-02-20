@@ -19,22 +19,31 @@ import {
 import Home from './pages/home';
 import Teams from './pages/team';
 import RoadMap from './pages/roadmap';
+const PrivateRoute = ({ element }) => {
+  const token = JSON.parse(sessionStorage.getItem('user'));
+  if (token) {
+    return element;
+  } else {
+    window.location.href = '/login'; // Redirect to the login page if the user is not authenticated
+    return null;
+  }
+};
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <PrivateRoute element={<Home />} />,
   },
   {
     path: "/teams",
-    element: <Teams />,
+    element: <PrivateRoute element={<Teams />} />,
   },
   {
     path: "/roadmap",
-    element: <RoadMap />,
+    element: <PrivateRoute element={<RoadMap />} />,
   },
   {
     path: "/logout",
-    element: <Logout />,
+    element: <PrivateRoute element={<Logout />} />,
   },
   
   {
