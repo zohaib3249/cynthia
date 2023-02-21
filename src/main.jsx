@@ -20,7 +20,7 @@ import Home from './pages/home';
 import Teams from './pages/team';
 import RoadMap from './pages/roadmap';
 const PrivateRoute = ({ element }) => {
-  const token = JSON.parse(sessionStorage.getItem('user'));
+  const token = sessionStorage.getItem('user');
   if (!token || token) {
     return element;
   } else {
@@ -31,6 +31,10 @@ const PrivateRoute = ({ element }) => {
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <PrivateRoute element={<Home />} />,
+  },
+  {
+    path: "*",
     element: <PrivateRoute element={<Home />} />,
   },
   {

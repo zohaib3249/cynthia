@@ -6,14 +6,16 @@ const API_URL = 'http://localhost:8000/';
 const headers = {'Content-Type': 'application/json'}
 function get_header()
 {
-  const token = JSON.parse(sessionStorage.getItem("user"))?.token;
+  
+  const token = sessionStorage.getItem("user");
+
     const authHeader = token ? { Authorization: `Token ${token}` } : {};
     const config = { headers: { ...headers, ...authHeader } };
     return config;
 }
 export const login = (data) => {
  
-  return axios.post(`${API_URL}login`,data,get_header())
+  return axios.post(`${API_URL}login`,data)
     .then(response => response.data)
     .catch(response => response.response.data);
 };
@@ -40,15 +42,26 @@ export const reset = (data) => {
     
     return axios.get(`${API_URL}teams`,get_header())
       .then(response => response.data)
-      .catch(response => response.response.data);
+      .catch(response => []);
   };
   export const addMember = (data) => {
     // debugger;
-    return axios.post(`${API_URL}add_member`, data,get_header())
+    return axios.post(`${API_URL}teams/`, data,get_header())
       .then(response => response.data)
       .catch(response => response.response.data);
   };
-  
+  export const editMember = (data,id) => {
+
+    return axios.put(`${API_URL}teams/${id}`, data,get_header())
+      .then(response => response.data)
+      .catch(response => response.response.data);
+  };
+  export const deleteMember = (id) => {
+    // debugger;
+    return axios.delete(`${API_URL}teams/${id}`, data,get_header())
+      .then(response => response.data)
+      .catch(response => response.response.data);
+  };
   export const deletememeber = (data) => {
     return axios.post(`${API_URL}delete`, data,get_header())
       .then(response => response.data)

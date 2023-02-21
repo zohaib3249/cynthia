@@ -28,6 +28,7 @@ function Teams() {
   const [teamMembers, setTeamMembers] = React.useState([]);
   React.useEffect(() => {
     async function fetchData() {
+
       var res = await request.fetchteams();
       console.log(res)
       setTeamMembers(res)
@@ -139,57 +140,155 @@ function Teams() {
     <div className="">
       <NavBar />
       <div className="container">
-      <div className="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-              <div className="modal-dialog modal-dialog-centered" role="document">
-                <form onSubmit={handleAddMember}>
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <h5 className="modal-title" id="exampleModalLongTitle">Add New Member</h5>
-                      <button type="button" className="close btn btn-light" data-dismiss="modal" aria-label="Close">
-                        X
-                      </button>
-                    </div>
-                    <div className="modal-body">
+        <div className="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <form onSubmit={handleAddMember}>
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="exampleModalLongTitle">Add New Member</h5>
+                  <button type="button" className="close btn btn-light" data-dismiss="modal" aria-label="Close">
+                    X
+                  </button>
+                </div>
+                <div className="modal-body">
 
-                      <div className="container">
-                        <div className="form-group ">
-                          <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Name Field">Name</label>
-                          <ImputText className="input_field form-control " {...propsData.name} />
-                        
-                        </div>
-                        
-                        <div className="mb-2"></div>
-                        <div className="form-group" >
-                          <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Arival Date">Arival Date</label>
-                          <ImputText className="input_field form-control " {...propsData.leavedate} />
-                        </div>
-                        <div className="mb-2"></div>
-                        <div className="form-group">
-                          <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Leave Date">Leave Date</label>
-                          <ImputText className="input_field form-control " {...propsData.arrival_date} />
-                        </div>
-                        <div className="mb-2"></div>
-                        <div className="form-group">
-                          <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Comment">Comment</label>
-                          <TextArea {...propsData.comment} />
-
-                        </div>
-
-
-                      </div>
+                  <div className="container">
+                    <div className="form-group ">
+                      <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Name Field">Name</label>
+                      <ImputText className="input_field form-control " {...propsData.name} />
 
                     </div>
-                    <div className="modal-footer d-flex justify-content-between ">
 
-                      <button type="button" className="button-large-2" data-dismiss="modal">Close</button>
-                      <button type="submit" className="btn btn-primary">Add</button>
+                    <div className="mb-2"></div>
+                    <div className="form-group" >
+                      <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Arival Date">Arival Date</label>
+                      <ImputText className="input_field form-control " {...propsData.leavedate} />
                     </div>
+                    <div className="mb-2"></div>
+                    <div className="form-group">
+                      <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Leave Date">Leave Date</label>
+                      <ImputText className="input_field form-control " {...propsData.arrival_date} />
+                    </div>
+                    <div className="mb-2"></div>
+                    <div className="form-group">
+                      <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Comment">Comment</label>
+                      <TextArea {...propsData.comment} />
+
+                    </div>
+
+
                   </div>
-                </form>
+
+                </div>
+                <div className="modal-footer d-flex justify-content-between ">
+
+                  <button type="button" className="button-large-2" data-dismiss="modal">Close</button>
+                  <button type="submit" className="btn btn-primary">Add</button>
+                </div>
               </div>
-            </div>
+            </form>
+          </div>
+        </div>
+        <div className="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <form onSubmit={handleAddMember}>
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="exampleModalLongTitle">Add New Member</h5>
+                  <button type="button" className="close btn btn-light" data-dismiss="modal" aria-label="Close">
+                    X
+                  </button>
+                </div>
+                <div className="modal-body">
+
+                  <div className="container">
+                    <div className="form-group ">
+                      <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Name Field">Name</label>
+                      <ImputText className="input_field form-control " {...propsData.name} />
+
+                    </div>
+
+                    <div className="mb-2"></div>
+                    <div className="form-group" >
+                      <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Arival Date">Arival Date</label>
+                      <ImputText className="input_field form-control " {...propsData.leavedate} />
+                    </div>
+                    <div className="mb-2"></div>
+                    <div className="form-group">
+                      <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Leave Date">Leave Date</label>
+                      <ImputText className="input_field form-control " {...propsData.arrival_date} />
+                    </div>
+                    <div className="mb-2"></div>
+                    <div className="form-group">
+                      <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Comment">Comment</label>
+                      <TextArea {...propsData.comment} />
+
+                    </div>
+
+
+                  </div>
+
+                </div>
+                <div className="modal-footer d-flex justify-content-between ">
+
+                  <button type="button" className="button-large-2" data-dismiss="modal">Close</button>
+                  <button type="submit" className="btn btn-primary">Add</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className="modal" id="editexampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <form onSubmit={handleEditMember}>
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="exampleModalLongTitle">Add New Member</h5>
+                  <button type="button" className="close btn btn-light" data-dismiss="modal" aria-label="Close">
+                    X
+                  </button>
+                </div>
+                <div className="modal-body">
+
+                  <div className="container">
+                    <div className="form-group ">
+                      <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Name Field">Name</label>
+                      <ImputText className="input_field form-control " {...propsData.name} />
+
+                    </div>
+
+                    <div className="mb-2"></div>
+                    <div className="form-group" >
+                      <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Arival Date">Arival Date</label>
+                      <ImputText className="input_field form-control " {...propsData.leavedate} />
+                    </div>
+                    <div className="mb-2"></div>
+                    <div className="form-group">
+                      <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Leave Date">Leave Date</label>
+                      <ImputText className="input_field form-control " {...propsData.arrival_date} />
+                    </div>
+                    <div className="mb-2"></div>
+                    <div className="form-group">
+                      <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Comment">Comment</label>
+                      <TextArea {...propsData.comment} />
+
+                    </div>
+
+
+                  </div>
+
+                </div>
+                <div className="modal-footer d-flex justify-content-between ">
+
+                  <button type="button" className="button-large-2" data-dismiss="modal">Close</button>
+                  <button type="submit" className="btn btn-primary">Add</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
         <div className="main_page flex-column d-flex justify-content-center">
-          
+
           <div className="row ">
             <div className="col-md-3"></div>
             <div className="col-md-6 flex-column d-flex justify-content-center">
@@ -204,7 +303,7 @@ function Teams() {
               </button>
 
             </div>
-           
+
 
           </div>
 
@@ -217,6 +316,7 @@ function Teams() {
 
                 <th scope="col">Arrival Date</th>
                 <th scope="col">Leave Date</th>
+                <th scope="col">Comment</th>
                 <th scope="col">Action</th>
               </tr>
               <tr class="border-bottom"></tr>
@@ -230,7 +330,7 @@ function Teams() {
                   <td>{member.comment}</td>
                   <td >
 
-                    <a href="" class="">
+                    <a href="" class="" data-toggle="modal" data-target="#editexampleModalCenter">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
