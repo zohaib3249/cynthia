@@ -5,8 +5,7 @@ const TextArea = (props) => {
   return (
    
     <textarea className={`form-control ${props.className || ""}`} id="exampleFormControlTextarea1" rows="3" 
-    onChange={e => props.onchange_fun(e.target.value)} placeholder={props.placeholder}
-    ></textarea>
+    onChange={e => props.onchange_fun(e.target.value)} placeholder={props.placeholder} value={props.value}></textarea>
     
 
   );

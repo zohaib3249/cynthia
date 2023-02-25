@@ -8,6 +8,7 @@ const ImputText = (props) => {
       className={`imput-text ${props.className || ""}`}
       placeholder={props.placeholder}
       onChange={e => props.onchange_fun(e.target.value)}
+      value ={props.value}
     required  />
     
     {props.error && (

@@ -50,15 +50,15 @@ export const reset = (data) => {
       .then(response => response.data)
       .catch(response => response.response.data);
   };
-  export const editMember = (data,id) => {
-
-    return axios.put(`${API_URL}teams/${id}`, data,get_header())
-      .then(response => response.data)
-      .catch(response => response.response.data);
+  export const editMember = (id,data) => {
+    debugger;
+    return axios.put(`${API_URL}teams/${id}/`, data,get_header())
+      .then(response => response)
+      .catch(response => response);
   };
   export const deleteMember = (id) => {
     // debugger;
-    return axios.delete(`${API_URL}teams/${id}`, data,get_header())
+    return axios.delete(`${API_URL}teams/${id}/`, data,get_header())
       .then(response => response.data)
       .catch(response => response.response.data);
   };

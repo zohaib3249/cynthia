@@ -69,6 +69,14 @@ function Teams() {
       newFeature: "Close",
     },
   };
+  const handleEditClick = (member) => {
+   
+    setEditingMember(member);
+    setname(member.name);
+    setarrival_date(member.arrival_date);
+    setleavedate(member.leave_date);
+    setcomment(member.comment);
+  };
   const validate = () => {
     const newErrors = {
       // name: name === '',
@@ -89,8 +97,7 @@ function Teams() {
     try {
       const response = await request.addMember(newMember);
       console.log(response)
-      debugger;
-
+     
       if (response.status === 201) {
         setTeamMembers([...teamMembers, response.data]);
         setname('');
@@ -110,16 +117,18 @@ function Teams() {
       return;
     }
     const editedMember = {
-      id: editingMember.id,
-      name,
-      arrival_date,
-      leavedate,
-      comment,
+     
+      "name":name,
+      "arrival_date":arrival_date,
+      "leave_date":leavedate,
+      "comment":comment,
     };
     try {
-      const response = await request.editMember(editingMember.id, editedMember);
+      
+      const response = await request.editMember(editingMember.member_id, editedMember);
+      debugger;
       if (response.status === 200) {
-        const index = teamMembers.findIndex(member => member.id === editingMember.id);
+        const index = teamMembers.findIndex(member => member.member_id === editingMember.member_id);
         const updatedMembers = [...teamMembers];
         updatedMembers[index] = response.data;
         setTeamMembers(updatedMembers);
@@ -155,24 +164,26 @@ function Teams() {
                   <div className="container">
                     <div className="form-group ">
                       <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Name Field">Name</label>
-                      <ImputText className="input_field form-control " {...propsData.name} />
+                      <ImputText className="input_field form-control " {...propsData.name} value={name} />
+
 
                     </div>
 
                     <div className="mb-2"></div>
                     <div className="form-group" >
                       <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Arival Date">Arival Date</label>
-                      <ImputText className="input_field form-control " {...propsData.leavedate} />
+                      <ImputText className="input_field form-control " {...propsData.leavedate} value={arrival_date} />
                     </div>
                     <div className="mb-2"></div>
                     <div className="form-group">
                       <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Leave Date">Leave Date</label>
-                      <ImputText className="input_field form-control " {...propsData.arrival_date} />
+                      <ImputText className="input_field form-control " {...propsData.leavedate} value={leavedate} />
                     </div>
                     <div className="mb-2"></div>
                     <div className="form-group">
                       <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Comment">Comment</label>
-                      <TextArea {...propsData.comment} />
+                      <TextArea className="input_field form-control " {...propsData.comment} value={comment} />
+
 
                     </div>
 
@@ -238,12 +249,12 @@ function Teams() {
             </form>
           </div>
         </div>
-        <div className="modal" id="editexampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        {editingMember && (<div className="modal" id="editexampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div className="modal-dialog modal-dialog-centered" role="document">
             <form onSubmit={handleEditMember}>
               <div className="modal-content">
                 <div className="modal-header">
-                  <h5 className="modal-title" id="exampleModalLongTitle">Add New Member</h5>
+                  <h5 className="modal-title" id="exampleModalLongTitle">Edit Member</h5>
                   <button type="button" className="close btn btn-light" data-dismiss="modal" aria-label="Close">
                     X
                   </button>
@@ -253,24 +264,26 @@ function Teams() {
                   <div className="container">
                     <div className="form-group ">
                       <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Name Field">Name</label>
-                      <ImputText className="input_field form-control " {...propsData.name} />
+                      <ImputText className="input_field form-control " {...propsData.name} value={name} />
 
                     </div>
 
                     <div className="mb-2"></div>
                     <div className="form-group" >
                       <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Arival Date">Arival Date</label>
-                      <ImputText className="input_field form-control " {...propsData.leavedate} />
+                      <ImputText className="input_field form-control " {...propsData.arrival_date} value={arrival_date} />
+
                     </div>
                     <div className="mb-2"></div>
                     <div className="form-group">
                       <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Leave Date">Leave Date</label>
-                      <ImputText className="input_field form-control " {...propsData.arrival_date} />
+                      <ImputText className="input_field form-control " {...propsData.leavedate} value={leavedate} />
                     </div>
                     <div className="mb-2"></div>
                     <div className="form-group">
                       <label className="required" for="exampleFormControlTextarea1" data-toggle="tooltip" data-placement="top" title="Comment">Comment</label>
-                      <TextArea {...propsData.comment} />
+                      <TextArea className="input_field form-control " {...propsData.comment} value={comment} />
+
 
                     </div>
 
@@ -286,7 +299,7 @@ function Teams() {
               </div>
             </form>
           </div>
-        </div>
+        </div>)}
         <div className="main_page flex-column d-flex justify-content-center">
 
           <div className="row ">
@@ -329,8 +342,8 @@ function Teams() {
                   <td>{member.leave_date}</td>
                   <td>{member.comment}</td>
                   <td >
-
-                    <a href="" class="" data-toggle="modal" data-target="#editexampleModalCenter">
+               
+                    <a href="" class="" data-toggle="modal" data-target="#editexampleModalCenter" onClick={() => handleEditClick(member)}>
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
