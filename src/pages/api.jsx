@@ -58,7 +58,7 @@ export const reset = (data) => {
   };
   export const deleteMember = (id) => {
     // debugger;
-    return axios.delete(`${API_URL}teams/${id}/`, data,get_header())
+    return axios.delete(`${API_URL}teams/${id}/`,get_header())
       .then(response => response.data)
       .catch(response => response.response.data);
   };
