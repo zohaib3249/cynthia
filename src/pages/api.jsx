@@ -3,12 +3,11 @@ import axios from 'axios';
 const API_URL = 'http://localhost:8000/';
 // const API_URL = 'https://44f4-39-46-44-115.in.ngrok.io/';
 // const API_URL = 'https://0212-39-46-44-115.in.ngrok.io/';
-const headers = {'Content-Type': 'application/json'}
+const headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 function get_header()
 {
   
   const token = sessionStorage.getItem("user");
-
     const authHeader = token ? { Authorization: `Token ${token}` } : {};
     const config = { headers: { ...headers, ...authHeader } };
     return config;
@@ -62,9 +61,29 @@ export const reset = (data) => {
       .then(response => response.data)
       .catch(response => response.response.data);
   };
-  export const deletememeber = (data) => {
-    return axios.post(`${API_URL}delete`, data,get_header())
+
+  export const fetchfeatures = () => {
+    return axios.get(`${API_URL}features`,get_header())
       .then(response => response.data)
-      .catch(error => console.error(error));
+      .catch(response => []);
   };
-  
+  export const addFeature = (data) => {
+    // debugger;
+    console.log(get_header())
+    console.log(data)
+    return axios.post(`${API_URL}features/`, data,get_header())
+      .then(response => response.data)
+      .catch(response => response.response.data);
+  };
+
+  export const editFeature = (id,data) => {
+    return axios.put(`${API_URL}features/${id}/`, data,get_header())
+      .then(response => response)
+      .catch(response => response);
+  };
+  export const deleteFeature = (id) => {
+    // debugger;
+    return axios.delete(`${API_URL}features/${id}/`,get_header())
+      .then(response => response.data)
+      .catch(response => response.response.data);
+  };
